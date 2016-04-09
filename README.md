@@ -5,15 +5,19 @@
 
 ## Playground
 
-This repository contains a tiny example of EasyPeasy laying out and animating
+This repository contains a tiny example of **EasyPeasy** laying out and animating
 constraints.
 
 ![gif](README/playground.gif)
 
 In order to make it run, just:
+
 1. Open the `EasyPeasyPlayground.xcworkspace` file.
+
 2. Build the **EasyPeasy** scheme.
+
 3. Show the assistant editor.
+
 4. Click on *Execute Playground*.
 
 ## EasyPeasy
