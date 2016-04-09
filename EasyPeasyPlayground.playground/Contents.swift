@@ -2,7 +2,6 @@ import UIKit
 import EasyPeasy
 import XCPlayground
 
-
 // Helper function
 func delay(delay:Double, closure:()->()) {
     dispatch_after( dispatch_time( DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))),
