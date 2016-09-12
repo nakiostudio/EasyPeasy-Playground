@@ -19,10 +19,10 @@ import Foundation
  */
 public enum Modifier {
     
-    case EqualTo
-    case GreaterThanOrEqualTo
-    case LessThanOrEqualTo
-    case MultipliedBy
+    case equalTo
+    case greaterThanOrEqualTo
+    case lessThanOrEqualTo
+    case multipliedBy
     
 }
 
@@ -46,7 +46,7 @@ public struct Constant {
      */
     init(_ value: CGFloat) {
         self.value = value
-        self.modifier = .EqualTo
+        self.modifier = .equalTo
     }
     
     /**
@@ -67,10 +67,10 @@ public struct Constant {
      */
     internal func layoutRelation() -> NSLayoutRelation {
         switch self.modifier {
-        case .EqualTo: return .Equal
-        case .LessThanOrEqualTo: return .LessThanOrEqual
-        case .GreaterThanOrEqualTo: return .GreaterThanOrEqual
-        case .MultipliedBy: return .Equal
+        case .equalTo: return .equal
+        case .lessThanOrEqualTo: return .lessThanOrEqual
+        case .greaterThanOrEqualTo: return .greaterThanOrEqual
+        case .multipliedBy: return .equal
         }
     }
     
@@ -81,10 +81,10 @@ public struct Constant {
      */
     internal func layoutMultiplier() -> CGFloat {
         switch self.modifier {
-        case .EqualTo: return 1.0
-        case .LessThanOrEqualTo: return 1.0
-        case .GreaterThanOrEqualTo: return 1.0
-        case .MultipliedBy: return CGFloat(self.value)
+        case .equalTo: return 1.0
+        case .lessThanOrEqualTo: return 1.0
+        case .greaterThanOrEqualTo: return 1.0
+        case .multipliedBy: return CGFloat(self.value)
         }
     }
     
@@ -94,14 +94,14 @@ public struct Constant {
      */
     internal func layoutValue() -> CGFloat {
         switch self.modifier {
-        case .MultipliedBy: return 0.0
+        case .multipliedBy: return 0.0
         default: return CGFloat(self.value)
         }
     }
     
 }
 
-prefix operator >= {}
+prefix operator >=
 
 /**
     Prefix operator that eases the creation of a `Constant` with a
@@ -110,10 +110,10 @@ prefix operator >= {}
     - returns: The resulting `Constant` struct
  */
 public prefix func >= (rhs: CGFloat) -> Constant {
-    return Constant(value: rhs, modifier: .GreaterThanOrEqualTo)
+    return Constant(value: rhs, modifier: .greaterThanOrEqualTo)
 }
 
-prefix operator <= {}
+prefix operator <=
 
 /**
     Prefix operator that eases the creation of a `Constant` with a
@@ -122,10 +122,10 @@ prefix operator <= {}
     - returns: The resulting `Constant` struct
  */
 public prefix func <= (rhs: CGFloat) -> Constant {
-    return Constant(value: rhs, modifier: .LessThanOrEqualTo)
+    return Constant(value: rhs, modifier: .lessThanOrEqualTo)
 }
 
-prefix operator * {}
+prefix operator *
 
 /**
     Prefix operator that eases the creation of a `Constant` with `value = 0.0`
@@ -134,5 +134,5 @@ prefix operator * {}
     - returns: The resulting `Constant` struct
  */
 public prefix func * (rhs: CGFloat) -> Constant {
-    return Constant(value: rhs, modifier: .MultipliedBy)
+    return Constant(value: rhs, modifier: .multipliedBy)
 }

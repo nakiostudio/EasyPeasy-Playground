@@ -69,7 +69,7 @@ public func == (lhs: Attribute, rhs: Attribute) -> Bool {
     return true
 }
 
-infix operator =~ {}
+infix operator =~
 
 /**
      Infix operator which determines whether two Attributes conflict

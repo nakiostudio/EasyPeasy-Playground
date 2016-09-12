@@ -10,7 +10,7 @@
 
 import UIKit
 
-infix operator <- {}
+infix operator <-
 
 /**
     Operator which applies the attribute given to the view located
@@ -40,32 +40,32 @@ public func <- (lhs: UIView, rhs: [Attribute]) -> [Attribute] {
     for attribute in rhs {
         // Create the constraint
         let newConstraints = attribute.createConstraintForView(lhs)
-        constraintsToInstall.appendContentsOf(newConstraints)
+        constraintsToInstall.append(contentsOf: newConstraints)
         
         // Gather regular attributes only as we don't want to store
         // `CompoundAttribute` objects
         var attributesToStore: [Attribute] = []
         if let compountAttribute = attribute as? CompoundAttribute {
-            attributesToStore.appendContentsOf(compountAttribute.attributes)
+            attributesToStore.append(contentsOf: compountAttribute.attributes)
         }
         else {
             attributesToStore.append(attribute)
         }
         
         // Append to the list of attributes that will be returned
-        regularAttributes.appendContentsOf(attributesToStore)
+        regularAttributes.append(contentsOf: attributesToStore)
         
         // Store the attribute applied in the superview
         if attribute.ownedBySuperview() {
-            lhs.superview?.easy_attributes.appendContentsOf(attributesToStore)
+            lhs.superview?.easy_attributes.append(contentsOf: attributesToStore)
         }
         else { // Store the attributes applied in self
-            lhs.easy_attributes.appendContentsOf(attributesToStore)
+            lhs.easy_attributes.append(contentsOf: attributesToStore)
         }
     }
     
     // Install these constraints
-    NSLayoutConstraint.activateConstraints(constraintsToInstall)
+    NSLayoutConstraint.activate(constraintsToInstall)
     
     // Return just regular `Attributes`, not `CompoundAttributes`
     return regularAttributes
@@ -86,12 +86,12 @@ public extension UIView {
         
         // Reload attributes owned by the superview
         if let attributes = (self.superview?.easy_attributes.filter { $0.createView === self }) {
-            storedAttributes.appendContentsOf(attributes)
+            storedAttributes.append(contentsOf: attributes)
         }
         
         // Reload attributes owned by the current view
         let attributes = self.easy_attributes.filter { $0.createView === self }
-        storedAttributes.appendContentsOf(attributes)
+        storedAttributes.append(contentsOf: attributes)
 
         // Apply
         self <- storedAttributes
@@ -117,20 +117,20 @@ public extension UIView {
         
         // Gather NSLayoutConstraints in the superview with self as createView
         for constraint in (self.superview?.constraints ?? []) {
-            if let attribute = constraint.easy_attribute where attribute.createView === self {
+            if let attribute = constraint.easy_attribute , attribute.createView === self {
                 constraintsToUninstall.append(constraint)
             }
         }
         
         // Gather NSLayoutConstraints in self with self as createView
         for constraint in self.constraints {
-            if let attribute = constraint.easy_attribute where attribute.createView === self {
+            if let attribute = constraint.easy_attribute , attribute.createView === self {
                 constraintsToUninstall.append(constraint)
             }
         }
         
         // Deactive the constraints
-        NSLayoutConstraint.deactivateConstraints(constraintsToUninstall)
+        NSLayoutConstraint.deactivate(constraintsToUninstall)
     }
     
 }

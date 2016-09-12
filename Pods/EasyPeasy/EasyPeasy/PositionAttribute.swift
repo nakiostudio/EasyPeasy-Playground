@@ -14,7 +14,7 @@ import Foundation
      Superclass for those `Attribute` objects that imply position
      constraints like left, right, top and bottom margins
  */
-public class PositionAttribute: Attribute {
+open class PositionAttribute: Attribute {
     
     /**
         This method overrides super's `createConstraintForView` to set 
@@ -23,8 +23,8 @@ public class PositionAttribute: Attribute {
         - parameter view: `UIView` in which the generated 
         `NSLayoutConstraint` will be added
      */
-    override func createConstraintForView(view: UIView) -> [NSLayoutConstraint] {
-        if let superview = view.superview where self.referenceView == nil {
+    override func createConstraintForView(_ view: UIView) -> [NSLayoutConstraint] {
+        if let superview = view.superview , self.referenceView == nil {
             self.to(superview)
         }
         return super.createConstraintForView(view)
@@ -42,7 +42,7 @@ public class PositionAttribute: Attribute {
         the relationship to
         - returns: The current `Attribute` instance
      */
-    public func to(view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self {
+    open func to(_ view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self {
         self.referenceView = view
         self.referenceAttribute = attribute
         return self
@@ -53,107 +53,107 @@ public class PositionAttribute: Attribute {
 /**
     The left side of the object’s alignment rectangle
  */
-public class Left: PositionAttribute { }
+open class Left: PositionAttribute { }
 
 /**
     The right side of the object’s alignment rectangle
  */
-public class Right: PositionAttribute { }
+open class Right: PositionAttribute { }
 
 /**
     The top of the object’s alignment rectangle
  */
-public class Top: PositionAttribute { }
+open class Top: PositionAttribute { }
 
 /**
     The bottom of the object’s alignment rectangle
  */
-public class Bottom: PositionAttribute { }
+open class Bottom: PositionAttribute { }
 
 /**
     The leading edge of the object’s alignment rectangle
  */
-public class Leading: PositionAttribute { }
+open class Leading: PositionAttribute { }
 
 /**
     The trailing edge of the object’s alignment rectangle
  */
-public class Trailing: PositionAttribute { }
+open class Trailing: PositionAttribute { }
 
 /**
     The center along the x-axis of the object’s alignment rectangle
  */
-public class CenterX: PositionAttribute { }
+open class CenterX: PositionAttribute { }
 
 /**
     The center along the y-axis of the object’s alignment rectangle
  */
-public class CenterY: PositionAttribute { }
+open class CenterY: PositionAttribute { }
 
 /**
     The object’s baseline. For objects with more than one line of text, 
     this is the baseline for the topmost line of text
  */
-public class FirstBaseline: PositionAttribute { }
+open class FirstBaseline: PositionAttribute { }
 
 /**
     The object’s baseline. For objects with more than one line of text, 
     this is the baseline for the bottommost line of text
  */
-public class LastBaseline: PositionAttribute { }
+open class LastBaseline: PositionAttribute { }
 
 /**
     The object’s left margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class LeftMargin: PositionAttribute { }
+open class LeftMargin: PositionAttribute { }
 
 /**
     The object’s right margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class RightMargin: PositionAttribute { }
+open class RightMargin: PositionAttribute { }
 
 /**
     The object’s top margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class TopMargin: PositionAttribute { }
+open class TopMargin: PositionAttribute { }
 
 /**
     The object’s bottom margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class BottomMargin: PositionAttribute { }
+open class BottomMargin: PositionAttribute { }
 
 /**
     The object’s leading margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class LeadingMargin: PositionAttribute { }
+open class LeadingMargin: PositionAttribute { }
 
 /**
     The object’s trailing margin. For UIView objects, the margins are defined 
     by their layoutMargins property
  */
-public class TrailingMargin: PositionAttribute { }
+open class TrailingMargin: PositionAttribute { }
 
 /**
     The center along the x-axis between the object’s left and right margin. 
     For UIView objects, the margins are defined by their layoutMargins property
  */
-public class CenterXWithinMargins: PositionAttribute { }
+open class CenterXWithinMargins: PositionAttribute { }
 
 /**
     The center along the y-axis between the object’s top and bottom margin. 
     For UIView objects, the margins are defined by their layoutMargins property
  */
-public class CenterYWithinMargins: PositionAttribute { }
+open class CenterYWithinMargins: PositionAttribute { }
 
 /**
     The size of the object’s rectangle
  */
-public class Edges: CompoundAttribute {
+open class Edges: CompoundAttribute {
     
     /**
         Initializer that creates the sub `Attribute` objects
@@ -229,7 +229,7 @@ public class Edges: CompoundAttribute {
 /**
     The center along the x and y axis of the object’s alignment rectangle
  */
-public class Center: CompoundAttribute {
+open class Center: CompoundAttribute {
     
     /**
         Initializer that creates the sub `Attribute` objects
@@ -298,7 +298,7 @@ public class Center: CompoundAttribute {
     The object’s margins. For UIView objects, the margins are defined
     by their layoutMargins property
  */
-public class Margins: CompoundAttribute {
+open class Margins: CompoundAttribute {
     
     /**
         Initializer that creates the sub `Attribute` objects
@@ -375,7 +375,7 @@ public class Margins: CompoundAttribute {
     The center along the x-axis between the object’s left and right margin.
     For UIView objects, the margins are defined by their layoutMargins property
  */
-public class CenterWithinMargins: CompoundAttribute {
+open class CenterWithinMargins: CompoundAttribute {
     
     /**
         Initializer that creates the sub `Attribute` objects

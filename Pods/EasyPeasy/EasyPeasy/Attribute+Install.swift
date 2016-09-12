@@ -23,7 +23,7 @@ internal extension Attribute {
         - return boolean determining if the `Attribute` has to be
         applied
      */
-    internal func shouldInstallOnView(view: UIView) -> Bool {
+    internal func shouldInstallOnView(_ view: UIView) -> Bool {
         guard let _ = view.superview else {
             return false
         }
@@ -39,12 +39,12 @@ internal extension Attribute {
         with such `Attribute`
         - parameter view: `UIView` in which the `Attribute` will be installed
      */
-    internal func resolveConflictsOnView(view: UIView) {
+    internal func resolveConflictsOnView(_ view: UIView) {
         // Find conflicting constraints and attributes already installed
         let ownerView = self.ownedBySuperview() ? view.superview! : view
         var conflictingAttributes: [Attribute] = []
         let conflictingConstraints = ownerView.constraints.filter { constraint in
-            if let attribute = constraint.easy_attribute where attribute =~ self {
+            if let attribute = constraint.easy_attribute , attribute =~ self {
                 conflictingAttributes.append(attribute)
                 return true
             }
@@ -57,7 +57,7 @@ internal extension Attribute {
         }
         
         // Deactivate conflicting installed constraints
-        NSLayoutConstraint.deactivateConstraints(conflictingConstraints)
+        NSLayoutConstraint.deactivate(conflictingConstraints)
     }
     
     /**
@@ -74,7 +74,7 @@ internal extension Attribute {
         
         // If reference view is the superview then return same attribute
         // as `createAttribute`
-        if let referenceView = self.referenceView where referenceView === self.createView?.superview {
+        if let referenceView = self.referenceView , referenceView === self.createView?.superview {
             return self.createAttribute
         }
         
@@ -96,27 +96,27 @@ internal extension Attribute {
      */
     internal func referenceAttributeFromClass() -> ReferenceAttribute {
         switch self {
-        case is Width: return .Width
-        case is Height: return .Height
-        case is Left: return .Left
-        case is Right: return .Right
-        case is Top: return .Top
-        case is Bottom: return .Bottom
-        case is Leading: return .Leading
-        case is Trailing: return .Trailing
-        case is CenterX: return .CenterX
-        case is CenterY: return .CenterY
-        case is FirstBaseline: return .FirstBaseline
-        case is LastBaseline: return .LastBaseline
-        case is LeftMargin: return .LeftMargin
-        case is RightMargin: return .RightMargin
-        case is TopMargin: return .TopMargin
-        case is BottomMargin: return .BottomMargin
-        case is LeadingMargin: return .LeadingMargin
-        case is TrailingMargin: return .TrailingMargin
-        case is CenterXWithinMargins: return .CenterXWithinMargins
-        case is CenterYWithinMargins: return .CenterYWithinMargins
-        default: return .NotAnAttribute
+        case is Width: return .width
+        case is Height: return .height
+        case is Left: return .left
+        case is Right: return .right
+        case is Top: return .top
+        case is Bottom: return .bottom
+        case is Leading: return .leading
+        case is Trailing: return .trailing
+        case is CenterX: return .centerX
+        case is CenterY: return .centerY
+        case is FirstBaseline: return .firstBaseline
+        case is LastBaseline: return .lastBaseline
+        case is LeftMargin: return .leftMargin
+        case is RightMargin: return .rightMargin
+        case is TopMargin: return .topMargin
+        case is BottomMargin: return .bottomMargin
+        case is LeadingMargin: return .leadingMargin
+        case is TrailingMargin: return .trailingMargin
+        case is CenterXWithinMargins: return .centerXWithinMargins
+        case is CenterYWithinMargins: return .centerYWithinMargins
+        default: return .notAnAttribute
         }
     }
     
