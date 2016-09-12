@@ -14,7 +14,7 @@ import Foundation
     Superclass for those `Attribute` objects that imply dimension
     constraints like width and height
  */
-public class DimensionAttribute: Attribute {
+open class DimensionAttribute: Attribute {
     
     /**
         Establishes a relationship between the dimension attribute 
@@ -29,7 +29,7 @@ public class DimensionAttribute: Attribute {
         the relationship to
         - returns: The current `Attribute` instance
      */
-    public func like(view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self {
+    open func like(_ view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self {
         self.referenceView = view
         self.referenceAttribute = attribute
         return self
@@ -52,17 +52,17 @@ public class DimensionAttribute: Attribute {
 /**
     The width of the object’s alignment rectangle
  */
-public class Width: DimensionAttribute { }
+open class Width: DimensionAttribute { }
 
 /**
     The height of the object’s alignment rectangle
  */
-public class Height: DimensionAttribute { }
+open class Height: DimensionAttribute { }
 
 /**
     The size of the object’s rectangle
  */
-public class Size: CompoundAttribute {
+open class Size: CompoundAttribute {
     
     /**
         Initializer which creates a `CompountAttribute` instance formed
@@ -133,7 +133,7 @@ public class Size: CompoundAttribute {
         - parameter view: The reference view
         - returns: The current `CompoundAttribute` instance
      */
-    public func like(view: UIView) -> Self {
+    open func like(_ view: UIView) -> Self {
         self.referenceView = view
         for attr in self.attributes {
             attr.referenceView = view

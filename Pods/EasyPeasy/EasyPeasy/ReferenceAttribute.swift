@@ -17,56 +17,56 @@ import UIKit
 public enum ReferenceAttribute {
     
     // Dimesion attributes
-    case Width
-    case Height
+    case width
+    case height
     
     // Position attributes
-    case Left
-    case Right
-    case Top
-    case Bottom
-    case Leading
-    case Trailing
-    case CenterX
-    case CenterY
-    case FirstBaseline
-    case LastBaseline
-    case LeftMargin
-    case RightMargin
-    case TopMargin
-    case BottomMargin
-    case LeadingMargin
-    case TrailingMargin
-    case CenterXWithinMargins
-    case CenterYWithinMargins
+    case left
+    case right
+    case top
+    case bottom
+    case leading
+    case trailing
+    case centerX
+    case centerY
+    case firstBaseline
+    case lastBaseline
+    case leftMargin
+    case rightMargin
+    case topMargin
+    case bottomMargin
+    case leadingMargin
+    case trailingMargin
+    case centerXWithinMargins
+    case centerYWithinMargins
     
     // Default
-    case NotAnAttribute
+    case notAnAttribute
     
     /// Reference attribute opposite to the current one
     internal var opposite: ReferenceAttribute {
         switch self {
-        case .Width: return .Width
-        case .Height: return .Height
-        case .Left: return .Right
-        case .Right: return .Left
-        case .Top: return .Bottom
-        case .Bottom:return .Top
-        case .Leading: return .Trailing
-        case .Trailing: return .Leading
-        case .CenterX: return .CenterX
-        case .CenterY: return .CenterY
-        case .LastBaseline: return .LastBaseline
-        case .FirstBaseline: return .FirstBaseline
-        case .LeftMargin: return .RightMargin
-        case .RightMargin: return .LeftMargin
-        case .TopMargin: return .BottomMargin
-        case .BottomMargin: return .TopMargin
-        case .LeadingMargin: return .TrailingMargin
-        case .TrailingMargin: return .LeadingMargin
-        case .CenterXWithinMargins: return .CenterXWithinMargins
-        case .CenterYWithinMargins: return .CenterYWithinMargins
-        case .NotAnAttribute: return .NotAnAttribute
+        case .width: return .width
+        case .height: return .height
+        case .left: return .right
+        case .right: return .left
+        case .top: return .bottom
+        case .bottom:return .top
+        case .leading: return .trailing
+        case .trailing: return .leading
+        case .centerX: return .centerX
+        case .centerY: return .centerY
+        case .lastBaseline: return .lastBaseline
+        case .firstBaseline: return .firstBaseline
+        case .leftMargin: return .rightMargin
+        case .rightMargin: return .leftMargin
+        case .topMargin: return .bottomMargin
+        case .bottomMargin: return .topMargin
+        case .leadingMargin: return .trailingMargin
+        case .trailingMargin: return .leadingMargin
+        case .centerXWithinMargins: return .centerXWithinMargins
+        case .centerYWithinMargins: return .centerYWithinMargins
+        case .notAnAttribute: return .notAnAttribute
         }
     }
     
@@ -74,63 +74,63 @@ public enum ReferenceAttribute {
     /// attribute
     internal var layoutAttribute: NSLayoutAttribute {
         switch self {
-        case .Width: return .Width
-        case .Height: return .Height
-        case .Left: return .Left
-        case .Right: return .Right
-        case .Top: return .Top
-        case .Bottom:return .Bottom
-        case .Leading: return .Leading
-        case .Trailing: return .Trailing
-        case .CenterX: return .CenterX
-        case .CenterY: return .CenterY
-        case .LastBaseline: return .LastBaseline
-        case .FirstBaseline: return .FirstBaseline
-        case .LeftMargin: return .LeftMargin
-        case .RightMargin: return .RightMargin
-        case .TopMargin: return .TopMargin
-        case .BottomMargin: return .BottomMargin
-        case .LeadingMargin: return .LeadingMargin
-        case .TrailingMargin: return .TrailingMargin
-        case .CenterXWithinMargins: return .CenterXWithinMargins
-        case .CenterYWithinMargins: return .CenterYWithinMargins
-        case .NotAnAttribute: return .NotAnAttribute
+        case .width: return .width
+        case .height: return .height
+        case .left: return .left
+        case .right: return .right
+        case .top: return .top
+        case .bottom:return .bottom
+        case .leading: return .leading
+        case .trailing: return .trailing
+        case .centerX: return .centerX
+        case .centerY: return .centerY
+        case .lastBaseline: return .lastBaseline
+        case .firstBaseline: return .firstBaseline
+        case .leftMargin: return .leftMargin
+        case .rightMargin: return .rightMargin
+        case .topMargin: return .topMargin
+        case .bottomMargin: return .bottomMargin
+        case .leadingMargin: return .leadingMargin
+        case .trailingMargin: return .trailingMargin
+        case .centerXWithinMargins: return .centerXWithinMargins
+        case .centerYWithinMargins: return .centerYWithinMargins
+        case .notAnAttribute: return .notAnAttribute
         }
     }
     
     /// Reference attributes that may conflict with the current one
     internal var conflictingAttributes: [ReferenceAttribute] {
-        let left: [ReferenceAttribute] = [.Left, .CenterX, .Leading, .LeftMargin, .CenterXWithinMargins, .LeadingMargin]
-        let right: [ReferenceAttribute] = [.Right, .CenterX, .Trailing, .RightMargin, .CenterXWithinMargins, .TrailingMargin]
-        let top: [ReferenceAttribute] = [.Top, .CenterY, .FirstBaseline, .TopMargin, .CenterYWithinMargins]
-        let bottom: [ReferenceAttribute] = [.Bottom, .CenterY, LastBaseline, .BottomMargin, .CenterYWithinMargins]
-        let firstBaseLine: [ReferenceAttribute] = [.Top, .CenterY, .FirstBaseline, .TopMargin, .CenterYWithinMargins]
-        let lastBaseLine: [ReferenceAttribute] = [.LastBaseline, .Bottom, .CenterY, .BottomMargin, .CenterYWithinMargins]
-        let centerX: [ReferenceAttribute] = [.CenterX, .Left, .Right, .Leading, .Trailing, .LeftMargin, .RightMargin, .CenterXWithinMargins, .LeadingMargin, .TrailingMargin]
-        let centerY: [ReferenceAttribute] = [.CenterY, .Top, .Bottom, .LastBaseline, .FirstBaseline, .TopMargin, .BottomMargin, .CenterYWithinMargins]
+        let left: [ReferenceAttribute] = [.left, .centerX, .leading, .leftMargin, .centerXWithinMargins, .leadingMargin]
+        let right: [ReferenceAttribute] = [.right, .centerX, .trailing, .rightMargin, .centerXWithinMargins, .trailingMargin]
+        let top: [ReferenceAttribute] = [.top, .centerY, .firstBaseline, .topMargin, .centerYWithinMargins]
+        let bottom: [ReferenceAttribute] = [.bottom, .centerY, .lastBaseline, .bottomMargin, .centerYWithinMargins]
+        let firstBaseLine: [ReferenceAttribute] = [.top, .centerY, .firstBaseline, .topMargin, .centerYWithinMargins]
+        let lastBaseLine: [ReferenceAttribute] = [.lastBaseline, .bottom, .centerY, .bottomMargin, .centerYWithinMargins]
+        let centerX: [ReferenceAttribute] = [.centerX, .left, .right, .leading, .trailing, .leftMargin, .rightMargin, .centerXWithinMargins, .leadingMargin, .trailingMargin]
+        let centerY: [ReferenceAttribute] = [.centerY, .top, .bottom, .lastBaseline, .firstBaseline, .topMargin, .bottomMargin, .centerYWithinMargins]
         
         switch self {
-        case .Width: return [.Width]
-        case .Height: return [.Height]
-        case .Left: return left
-        case .Right: return right
-        case .Top: return top
-        case .Bottom: return bottom
-        case .Leading: return left
-        case .Trailing: return right
-        case .CenterX: return centerX
-        case .CenterY: return centerY
-        case .FirstBaseline: return firstBaseLine
-        case .LastBaseline: return lastBaseLine
-        case .LeftMargin: return left
-        case .RightMargin: return right
-        case .TopMargin: return top
-        case .BottomMargin: return bottom
-        case .LeadingMargin: return left
-        case .TrailingMargin: return right
-        case .CenterXWithinMargins: return centerX
-        case .CenterYWithinMargins: return centerY
-        case .NotAnAttribute: return []
+        case .width: return [.width]
+        case .height: return [.height]
+        case .left: return left
+        case .right: return right
+        case .top: return top
+        case .bottom: return bottom
+        case .leading: return left
+        case .trailing: return right
+        case .centerX: return centerX
+        case .centerY: return centerY
+        case .firstBaseline: return firstBaseLine
+        case .lastBaseline: return lastBaseLine
+        case .leftMargin: return left
+        case .rightMargin: return right
+        case .topMargin: return top
+        case .bottomMargin: return bottom
+        case .leadingMargin: return left
+        case .trailingMargin: return right
+        case .centerXWithinMargins: return centerX
+        case .centerYWithinMargins: return centerY
+        case .notAnAttribute: return []
         }
     }
     
@@ -140,27 +140,27 @@ public enum ReferenceAttribute {
     /// objects
     internal var shouldInvertConstant: Bool {
         switch self {
-        case .Width: return false
-        case .Height: return false
-        case .Left: return false
-        case .Right: return true
-        case .Top: return false
-        case .Bottom:return true
-        case .Leading: return false
-        case .Trailing: return true
-        case .CenterX: return false
-        case .CenterY: return false
-        case .FirstBaseline: return false
-        case .LastBaseline: return true
-        case .LeftMargin: return false
-        case .RightMargin: return true
-        case .TopMargin: return false
-        case .BottomMargin: return true
-        case .LeadingMargin: return false
-        case .TrailingMargin: return true
-        case .CenterXWithinMargins: return false
-        case .CenterYWithinMargins: return false
-        case .NotAnAttribute: return false
+        case .width: return false
+        case .height: return false
+        case .left: return false
+        case .right: return true
+        case .top: return false
+        case .bottom:return true
+        case .leading: return false
+        case .trailing: return true
+        case .centerX: return false
+        case .centerY: return false
+        case .firstBaseline: return false
+        case .lastBaseline: return true
+        case .leftMargin: return false
+        case .rightMargin: return true
+        case .topMargin: return false
+        case .bottomMargin: return true
+        case .leadingMargin: return false
+        case .trailingMargin: return true
+        case .centerXWithinMargins: return false
+        case .centerYWithinMargins: return false
+        case .notAnAttribute: return false
         }
     }
     

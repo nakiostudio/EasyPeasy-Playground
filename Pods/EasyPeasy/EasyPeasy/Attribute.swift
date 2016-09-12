@@ -24,33 +24,33 @@ public typealias Condition = () -> Bool
     objects used by **EasyPeasy** to create and update
     `UIView` constraints
  */
-public class Attribute {
+open class Attribute {
     
     /// This property aggregates the `NSLayoutRelation`,
     /// the constant and the multiplier of a layout 
     /// constraint
-    public internal(set) var constant: Constant
+    open internal(set) var constant: Constant
     
     /// Priority level of the constraint
-    public internal(set) var priority: Priority
+    open internal(set) var priority: Priority
     
     /// Condition to evaluate in order to apply
     /// (or not) the constraint
-    public internal(set) var condition: Condition?
+    open internal(set) var condition: Condition?
     
     /// Target `UIView` of the constraint
-    public internal(set) weak var createView: UIView?
+    open internal(set) weak var createView: UIView?
     
     /// `Attribute` applied to the view
-    public var createAttribute: ReferenceAttribute {
+    open var createAttribute: ReferenceAttribute {
         return self.referenceAttributeFromClass()
     }
     
     /// Reference `UIView` of the constraint
-    public internal(set) weak var referenceView: UIView?
+    open internal(set) weak var referenceView: UIView?
     
     /// Referencce `Attribute` of the constraint
-    public internal(set) var referenceAttribute: ReferenceAttribute?
+    open internal(set) var referenceAttribute: ReferenceAttribute?
     
     /**
         Initializer which creates an `Attribute` instance
@@ -60,7 +60,7 @@ public class Attribute {
      */
     public init() {
         self.constant = Constant(0.0)
-        self.priority = .HighPriority
+        self.priority = .highPriority
     }
     
     /**
@@ -72,7 +72,7 @@ public class Attribute {
      */
     public init(_ value: CGFloat) {
         self.constant = Constant(value)
-        self.priority = .HighPriority
+        self.priority = .highPriority
     }
     
     /**
@@ -85,7 +85,7 @@ public class Attribute {
      */
     public init(_ constant: Constant) {
         self.constant = constant
-        self.priority = .HighPriority
+        self.priority = .highPriority
     }
     
     // MARK: Public methods
@@ -96,7 +96,7 @@ public class Attribute {
         priority of the constraint
         - returns: the `Attribute` instance
      */
-    public func with(priority: Priority) -> Self {
+    open func with(_ priority: Priority) -> Self {
         self.priority = priority
         return self
     }
@@ -107,7 +107,7 @@ public class Attribute {
         installing a constraint
         - returns: the `Attribute` instance
      */
-    public func when(closure: Condition?) -> Self {
+    open func when(_ closure: Condition?) -> Self {
         self.condition = closure
         return self
     }
@@ -124,7 +124,7 @@ public class Attribute {
         - returns an `Array` of `NSLayoutConstraint` objects that will
         be installed on the `UIView` passed as parameter
      */
-    internal func createConstraintForView(view: UIView) -> [NSLayoutConstraint] {
+    internal func createConstraintForView(_ view: UIView) -> [NSLayoutConstraint] {
         // Reference to the target view
         self.createView = view
         
